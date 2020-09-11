@@ -17,16 +17,19 @@ static char shape_layer;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    CAShapeLayer *shapeLayer = [[CAShapeLayer alloc] init];
-    CGRect shapeRect = CGRectMake(200, 100, 100, 100);
-    shapeLayer.anchorPoint = CGPointMake(0, 0);//改变锚点 范围是（0-1）
-    shapeLayer.backgroundColor = [UIColor redColor].CGColor;
-    shapeLayer.frame = shapeRect;
-    [self.view.layer addSublayer:shapeLayer];
+    UIImageView *imageView = [[UIImageView alloc] init];
+    UIImage *imgae = [UIImage imageNamed:@"image"];
+    imageView.image = imgae;
+    
+    CGRect shapeRect = CGRectMake(200, 100, 90, 120);
+    imageView.layer.anchorPoint = CGPointMake(0, 0);//改变锚点 范围是（0-1）
+  
+    imageView.frame = shapeRect;
+    [self.view addSubview:imageView];
     
     UIButton *rotaionBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [self.view addSubview:rotaionBtn];
-     objc_setAssociatedObject(rotaionBtn, &shape_layer, shapeLayer, OBJC_ASSOCIATION_RETAIN);
+     objc_setAssociatedObject(rotaionBtn, &shape_layer, imageView, OBJC_ASSOCIATION_RETAIN);
     rotaionBtn.frame = CGRectMake(200, 300, 100, 30);
     rotaionBtn.backgroundColor = [UIColor blueColor];
     rotaionBtn.layer.cornerRadius = 5;
@@ -37,7 +40,7 @@ static char shape_layer;
     
     UIButton *recoveryBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [self.view addSubview:recoveryBtn];
-    objc_setAssociatedObject(recoveryBtn, &shape_layer, shapeLayer, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(recoveryBtn, &shape_layer, imageView, OBJC_ASSOCIATION_RETAIN);
     recoveryBtn.frame = CGRectMake(50, 300, 100, 30);
     recoveryBtn.backgroundColor = [UIColor redColor];
     recoveryBtn.layer.cornerRadius = 5;
@@ -48,13 +51,13 @@ static char shape_layer;
 }
 
 -(void)fall:(UIButton *)sender{
-    CAShapeLayer *shapeLayer = objc_getAssociatedObject(sender, &shape_layer);
-    [CAAnimationRotation animationRoation:shapeLayer];
+    UIImageView *shapeLayer = objc_getAssociatedObject(sender, &shape_layer);
+    [CAAnimationRotation animationRoation:(CAShapeLayer*)shapeLayer.layer];
 }
 
 -(void)recovery:(UIButton *)sender{
-    CAShapeLayer *shapeLayer = objc_getAssociatedObject(sender, &shape_layer);
-    [shapeLayer removeAllAnimations];
+    UIImageView *shapeLayer = objc_getAssociatedObject(sender, &shape_layer);
+    [shapeLayer.layer removeAllAnimations];
 }
 
 
