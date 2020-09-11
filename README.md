@@ -1,0 +1,2 @@
+# CAAnimationRotaion
+模仿墙壁上相框脱落来回摇摆最后停止的效果
