@@ -13,6 +13,7 @@
      
     CAKeyframeAnimation *rotaionAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation"];
     rotaionAnimation.duration = 3;
+   //如果没有达到预期效果修改此处的values
     rotaionAnimation.values = @[
         [NSValue valueWithCGAffineTransform:CGAffineTransformMakeRotation(M_PI_2)],
         [NSValue valueWithCGAffineTransform:CGAffineTransformMakeRotation(-M_PI/3.0)],

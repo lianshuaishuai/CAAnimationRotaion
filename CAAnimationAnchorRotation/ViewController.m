@@ -60,5 +60,4 @@ static char shape_layer;
     [shapeLayer.layer removeAllAnimations];
 }
 
-
 @end
