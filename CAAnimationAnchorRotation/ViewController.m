@@ -58,7 +58,7 @@ static char shape_layer;
 -(void)recovery:(UIButton *)sender{
     UIImageView *shapeLayer = objc_getAssociatedObject(sender, &shape_layer);
     [shapeLayer.layer removeAllAnimations];
-    NSLog(@"4444");
+    NSLog(@"4444555");
 }
 
 @end
